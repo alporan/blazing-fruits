@@ -1,5 +1,5 @@
 # BlazingFruits
-Blazing fruits is an Android game.
+![title](https://github.com/alporan/BlazingFruits/blob/master/Material/title2.png)
 ## Installation
 Use Google Play to download BlazingFruits to your Android phone.
 ## How to Play?
