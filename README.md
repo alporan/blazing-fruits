@@ -2,8 +2,7 @@
 <img src="https://github.com/alporan/BlazingFruits/blob/master/Material/title2.png" alt="title" width="1024" height="500">
 
 ## Installation  
-<img align="left" src="https://github.com/alporan/BlazingFruits/blob/master/Material/icon.png" alt="icon" width="60" height="60"> Use Google Play to download BlazingFruits to your Android phone.
-
+<img align="left" src="https://github.com/alporan/BlazingFruits/blob/master/Material/icon.png" alt="icon" width="60" height="60"> Use Google Play to download BlazingFruits to your Android phone.  
 https://play.google.com/store/apps/details?id=com.orana.game
   
 ## How to Play?
