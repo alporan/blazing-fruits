@@ -3,6 +3,7 @@
 
 ## Installation
   Use Google Play to download BlazingFruits to your Android phone.
+  
 <img src="https://github.com/alporan/BlazingFruits/blob/master/Material/icon.png" alt="icon" width="60" height="60"> https://play.google.com/store/apps/details?id=com.orana.game
   
 ## How to Play?
