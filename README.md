@@ -1,10 +1,9 @@
 # BlazingFruits
 <img src="https://github.com/alporan/BlazingFruits/blob/master/Material/title2.png" alt="title" width="1024" height="500">
 
-## Installation
-  Use Google Play to download BlazingFruits to your Android phone.
-  
-<img src="https://github.com/alporan/BlazingFruits/blob/master/Material/icon.png" alt="icon" width="60" height="60"> https://play.google.com/store/apps/details?id=com.orana.game
+## Installation  
+<img align="left" src="https://github.com/alporan/BlazingFruits/blob/master/Material/icon.png" alt="icon" width="60" height="60"> Use Google Play to download BlazingFruits to your Android phone.
+https://play.google.com/store/apps/details?id=com.orana.game
   
 ## How to Play?
 Tap your screen to burn the fruits whose color is matching with the background color.
