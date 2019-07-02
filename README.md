@@ -1,4 +1,4 @@
-# BlazingFruits
+# Blazing Fruits
 <img src="https://github.com/alporan/BlazingFruits/blob/master/Material/title2.png" alt="title" width="1024" height="500">
 
 ## Installation  
