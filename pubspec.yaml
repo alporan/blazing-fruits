@@ -1,0 +1,35 @@
+name: blazing_fruits
+description: Blazing Fruits v2 — arcade lane game
+publish_to: 'none'
+version: 2.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flame: ^1.18.0
+  shared_preferences: ^2.2.0
+  audioplayers: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flame_test: ^1.18.0
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/audio/
+    - assets/images/fruits/
+    - assets/images/laser/
+    - assets/images/ui/
+
+  # Font declaration commented out until GameFont.ttf is added to assets/fonts/
+  # fonts:
+  #   - family: GameFont
+  #     fonts:
+  #       - asset: assets/fonts/GameFont.ttf

@@ -1,3 +1,8 @@
+# IDE
+.idea/
+.vscode/
+*.iml
+
 # Miscellaneous
 *.class
 *.lock
@@ -6,8 +11,6 @@
 *.swp
 .buildlog/
 .history
-
-
 
 # Flutter repo-specific
 /bin/cache/

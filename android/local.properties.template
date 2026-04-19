@@ -1,0 +1,11 @@
+# Copy this file to local.properties and fill in your paths.
+# local.properties is machine-specific and must NOT be committed to git.
+#
+# Flutter generates this automatically when you run:
+#   flutter pub get
+# from inside the blazing_fruits/ directory.
+#
+# If it's missing, create it manually:
+
+sdk.dir=C\:\\Users\\YOUR_USERNAME\\AppData\\Local\\Android\\Sdk
+flutter.sdk=C\:\\flutter
