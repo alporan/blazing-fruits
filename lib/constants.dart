@@ -8,7 +8,7 @@ const int maxLanes = 3;
 const double fruitSize = 60.0; // logical pixels, square bounding box
 const double fruitSpeedInitial = 185.0; // px/sec at game start
 const double fruitSpeedMax = 420.0; // px/sec cap
-const double fruitSpeedPerBurn = 2.5; // px/sec added per successful burn
+const double fruitSpeedPerBurn = 3; // px/sec added per successful burn
 
 // ── Spawning ──────────────────────────────────────────────────────────────────
 const double spawnIntervalInitial = 1.6; // seconds between spawns
