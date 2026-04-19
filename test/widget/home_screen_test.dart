@@ -50,7 +50,11 @@ void main() {
       await tester.pump();
 
       await tester.tap(find.text('LEADERBOARD'));
-      await tester.pumpAndSettle();
+      // Use pump with a duration instead of pumpAndSettle — the HomeScreen has
+      // a continuously-looping pulse animation that would cause pumpAndSettle
+      // to time out even after navigation succeeds.
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
 
       expect(find.text('LEADERBOARD'), findsWidgets);
     });

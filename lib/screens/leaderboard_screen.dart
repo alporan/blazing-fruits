@@ -80,7 +80,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                     final entry = _scores[i];
                     final rank = i + 1;
                     final isTop3 = rank <= 3;
-                    final rankEmoji = ['🥇', '🥈', '🥉'][rank - 1];
+                    final rankEmoji = isTop3 ? ['🥇', '🥈', '🥉'][rank - 1] : null;
 
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 14),
@@ -91,7 +91,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                             width: 44,
                             child: isTop3
                                 ? Text(
-                                    rankEmoji,
+                                    rankEmoji!,
                                     style: const TextStyle(fontSize: 22),
                                   )
                                 : Text(
