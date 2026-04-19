@@ -84,7 +84,6 @@ class BlazingGame extends FlameGame {
   void update(double dt) {
     super.update(dt);
     if (!isRunning) return;
-    _hud.setWave(_spawner.wave);
     _spawner.update(dt);
   }
 
@@ -153,6 +152,12 @@ class BlazingGame extends FlameGame {
     if (!_audioReady || !_hasLife) return;
     try { _sfxLife?.play(AssetSource('audio/life_lost.wav'), volume: 1.0); }
     catch (_) {}
+  }
+
+  /// Called by flamethrower when a wrong-color fruit is burned.
+  void onFruitBurned() {
+    scoreManager.addPoints();
+    _spawner.accelerate();
   }
 
   // ── Pause ─────────────────────────────────────────────────────────────────

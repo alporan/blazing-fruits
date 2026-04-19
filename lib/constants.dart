@@ -6,17 +6,13 @@ const int maxLanes = 3;
 
 // ── Fruit ─────────────────────────────────────────────────────────────────────
 const double fruitSize = 60.0; // logical pixels, square bounding box
-const double fruitSpeedInitial = 180.0; // px/sec at game start
+const double fruitSpeedInitial = 185.0; // px/sec at game start
 const double fruitSpeedMax = 420.0; // px/sec cap
-const double fruitSpeedIncrement = 12.0; // added every wave
+const double fruitSpeedPerBurn = 2.5; // px/sec added per successful burn
 
 // ── Spawning ──────────────────────────────────────────────────────────────────
 const double spawnIntervalInitial = 1.6; // seconds between spawns
 const double spawnIntervalMin = 0.45; // floor
-const double spawnIntervalDecrement = 0.08; // per wave
-
-// ── Wave ──────────────────────────────────────────────────────────────────────
-const int fruitsPerWave = 10; // fruits before speed/interval step up
 
 // ── Flamethrower ─────────────────────────────────────────────────────────────
 const double flamethrowerDuration = 0.30;        // seconds flame animation lasts
@@ -26,8 +22,6 @@ const double flamethrowerCoreHeight = 14.0;       // height of bright core flame
 
 // ── Scoring ───────────────────────────────────────────────────────────────────
 const int pointsPerBurn = 10;
-const int pointsComboMultiplierStep = 5; // every N consecutive burns → +1x
-const int maxComboMultiplier = 5;
 
 // ── Lives ─────────────────────────────────────────────────────────────────────
 const int startingLives = 3;

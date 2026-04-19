@@ -8,10 +8,6 @@ class FruitSpawner {
   final BlazingGame game;
   final int laneCount;
 
-  // ── Wave state ─────────────────────────────────────────────────────────────
-  int _wave = 1;
-  int _fruitsSpawnedThisWave = 0;
-
   double _fruitSpeed = fruitSpeedInitial;
   double _spawnInterval = spawnIntervalInitial;
   double _elapsed = 0;
@@ -20,13 +16,17 @@ class FruitSpawner {
 
   FruitSpawner({required this.game, required this.laneCount});
 
-  int get wave => _wave;
   double get currentFruitSpeed => _fruitSpeed;
+
+  /// Called by the game whenever a fruit is successfully burned.
+  void accelerate() {
+    _fruitSpeed = (_fruitSpeed + fruitSpeedPerBurn).clamp(0, fruitSpeedMax);
+  }
 
   void update(double dt) {
     _elapsed += dt;
     if (_elapsed >= _spawnInterval) {
-      _elapsed -= _spawnInterval; // subtract rather than reset — no drift
+      _elapsed -= _spawnInterval;
       _spawnFruit();
     }
   }
@@ -37,14 +37,12 @@ class FruitSpawner {
     // 60% chance fruit is wrong-color (must be burned)
     int colorIndex;
     if (_rng.nextDouble() < 0.60) {
-      // Pick any color that is NOT the lane color
-      // Build list of valid wrong-color indices (capped to available colors)
       final available = List.generate(laneColors.length, (i) => i)
           .where((i) => i != laneIndex)
           .toList();
       colorIndex = available.isEmpty ? 0 : available[_rng.nextInt(available.length)];
     } else {
-      colorIndex = laneIndex; // matching — safe to let through
+      colorIndex = laneIndex;
     }
 
     final laneWidth = game.size.x / laneCount;
@@ -58,24 +56,9 @@ class FruitSpawner {
     )..position = Vector2(x, -fruitSize);
 
     game.add(fruit);
-
-    _fruitsSpawnedThisWave++;
-    if (_fruitsSpawnedThisWave >= fruitsPerWave) {
-      _incrementWave();
-    }
-  }
-
-  void _incrementWave() {
-    _wave++;
-    _fruitsSpawnedThisWave = 0;
-    _fruitSpeed = (_fruitSpeed + fruitSpeedIncrement).clamp(0, fruitSpeedMax);
-    _spawnInterval =
-        (_spawnInterval - spawnIntervalDecrement).clamp(spawnIntervalMin, double.infinity);
   }
 
   void reset() {
-    _wave = 1;
-    _fruitsSpawnedThisWave = 0;
     _fruitSpeed = fruitSpeedInitial;
     _spawnInterval = spawnIntervalInitial;
     _elapsed = 0;

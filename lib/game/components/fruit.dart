@@ -35,7 +35,6 @@ class FruitComponent extends PositionComponent with HasGameRef<BlazingGame> {
       if (!isMatching) {
         // Wrong-color fruit escaped — penalise
         gameRef.lifeManager.loseLife();
-        gameRef.scoreManager.resetCombo();
         gameRef.playSfxLifeLost();
       }
       // Matching fruit at bottom = correct play, no penalty

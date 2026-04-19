@@ -256,12 +256,11 @@ class FlamethrowerComponent extends PositionComponent
 
       if (!fruit.isMatching) {
         fruit.burn();
-        gameRef.scoreManager.addPoints();
+        gameRef.onFruitBurned();
         gameRef.playSfxBurn();
       } else {
         fruit.burn();
         gameRef.lifeManager.loseLife();
-        gameRef.scoreManager.resetCombo();
         gameRef.playSfxLifeLost();
       }
     }

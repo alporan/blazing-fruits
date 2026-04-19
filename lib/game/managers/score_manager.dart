@@ -23,43 +23,24 @@ class ScoreEntry {
 class ScoreManager {
   // ── State ──────────────────────────────────────────────────────────────────
   int _score = 0;
-  int _combo = 0;
-  int _comboMultiplier = 1;
 
   // ── Streams ────────────────────────────────────────────────────────────────
   final _scoreController = StreamController<int>.broadcast();
-  final _comboController = StreamController<int>.broadcast();
 
   Stream<int> get scoreStream => _scoreController.stream;
-  Stream<int> get comboStream => _comboController.stream;
 
   // ── Getters ────────────────────────────────────────────────────────────────
   int get score => _score;
-  int get combo => _combo;
-  int get comboMultiplier => _comboMultiplier;
 
   // ── Scoring ────────────────────────────────────────────────────────────────
   void addPoints() {
-    _combo++;
-    _comboMultiplier =
-        (1 + _combo ~/ pointsComboMultiplierStep).clamp(1, maxComboMultiplier);
-    _score += pointsPerBurn * _comboMultiplier;
+    _score += pointsPerBurn;
     _scoreController.add(_score);
-    _comboController.add(_comboMultiplier);
-  }
-
-  void resetCombo() {
-    _combo = 0;
-    _comboMultiplier = 1;
-    _comboController.add(_comboMultiplier);
   }
 
   void reset() {
     _score = 0;
-    _combo = 0;
-    _comboMultiplier = 1;
     _scoreController.add(_score);
-    _comboController.add(_comboMultiplier);
   }
 
   // ── Persistence ────────────────────────────────────────────────────────────
@@ -101,6 +82,5 @@ class ScoreManager {
 
   void dispose() {
     _scoreController.close();
-    _comboController.close();
   }
 }
