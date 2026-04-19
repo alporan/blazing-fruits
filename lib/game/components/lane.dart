@@ -3,13 +3,13 @@ import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
 import '../blazing_game.dart';
-import 'laser.dart';
+import 'flamethrower.dart';
 
 class LaneComponent extends PositionComponent
     with HasGameRef<BlazingGame>, TapCallbacks {
   final int laneIndex;
   final int laneCount;
-  late final LaserComponent _laser;
+  late final FlamethrowerComponent _flamethrower;
 
   LaneComponent({
     required this.laneIndex,
@@ -21,11 +21,10 @@ class LaneComponent extends PositionComponent
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    _laser = LaserComponent(
-      laneIndex: laneIndex,
-      laneWidth: size.x,
-    )..position = Vector2.zero();
-    await add(_laser);
+    _flamethrower = FlamethrowerComponent(laneIndex: laneIndex)
+      ..size = size
+      ..position = Vector2.zero();
+    await add(_flamethrower);
   }
 
   @override
@@ -60,6 +59,6 @@ class LaneComponent extends PositionComponent
   void onTapDown(TapDownEvent event) {
     if (!gameRef.isRunning) return;
     gameRef.playSfxLaser();
-    _laser.fire();
+    _flamethrower.fire();
   }
 }

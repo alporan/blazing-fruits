@@ -18,10 +18,11 @@ const double spawnIntervalDecrement = 0.08; // per wave
 // ── Wave ──────────────────────────────────────────────────────────────────────
 const int fruitsPerWave = 10; // fruits before speed/interval step up
 
-// ── Laser ─────────────────────────────────────────────────────────────────────
-const double laserDuration = 0.25; // seconds laser is visible after tap
-const double laserWidth = 12.0;
-const double laserZoneFraction = 0.15; // bottom 15% of screen = laser zone
+// ── Flamethrower ─────────────────────────────────────────────────────────────
+const double flamethrowerDuration = 0.30;        // seconds flame animation lasts
+const double flamethrowerYFraction = 0.85;       // Y position from top (world fraction)
+const double flamethrowerImpactHalfHeight = 55.0; // half-height of impact zone (px)
+const double flamethrowerCoreHeight = 14.0;       // height of bright core flame beam
 
 // ── Scoring ───────────────────────────────────────────────────────────────────
 const int pointsPerBurn = 10;
@@ -38,9 +39,9 @@ const String prefKeyScores = 'high_scores';
 // ── Colors ────────────────────────────────────────────────────────────────────
 // Index alignment is a contract: laneColors[i] == fruitColor for lane i
 const List<Color> laneColors = [
-  Color(0xFFE84040), // red   → lane 0
-  Color(0xFF4084E8), // blue  → lane 1
-  Color(0xFF40C840), // green → lane 2
+  Color(0xFF00E84B), // bright green  → lane 0
+  Color(0xFFFFE000), // bright yellow → lane 1
+  Color(0xFFFF2222), // bright red    → lane 2
 ];
 
 const Color bgColor = Color(0xFF0D0D0D);
@@ -48,10 +49,14 @@ const Color hudTextColor = Color(0xFFFFFFFF);
 const Color dividerColor = Color(0x44FFFFFF);
 
 // Lane background opacity (applied to laneColors[i])
-const double laneBgOpacity = 0.35;
+const double laneBgOpacity = 0.20;
 
-// ── Fruit emoji labels (rendered as text inside circle) ───────────────────────
-const List<String> fruitEmojis = ['🍎', '🫐', '🍋'];
+// ── Fruit emoji labels per lane (3 variants each, [laneIndex][variant]) ────────
+const List<List<String>> laneFruitEmojis = [
+  ['🍏', '🍐', '🥝'], // green lane
+  ['🍋', '🍌', '🌽'], // yellow lane
+  ['🍎', '🍓', '🍒'], // red lane
+];
 
 // ── Particle burst ────────────────────────────────────────────────────────────
 const int burnParticleCount = 14;

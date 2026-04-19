@@ -54,6 +54,7 @@ class FruitSpawner {
       colorIndex: colorIndex,
       laneIndex: laneIndex,
       speed: _fruitSpeed,
+      fruitVariant: _rng.nextInt(laneFruitEmojis[colorIndex].length),
     )..position = Vector2(x, -fruitSize);
 
     game.add(fruit);

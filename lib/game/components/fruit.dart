@@ -9,6 +9,7 @@ class FruitComponent extends PositionComponent with HasGameRef<BlazingGame> {
   final int colorIndex;
   final int laneIndex;
   final double speed;
+  final int fruitVariant; // 0–2: selects which emoji within the lane’s fruit set
 
   bool _burned = false;
 
@@ -16,10 +17,12 @@ class FruitComponent extends PositionComponent with HasGameRef<BlazingGame> {
     required this.colorIndex,
     required this.laneIndex,
     required this.speed,
+    this.fruitVariant = 0,
   }) : super(size: Vector2.all(fruitSize));
 
   bool get isMatching => colorIndex == laneIndex;
   Color get fruitColor => laneColors[colorIndex];
+  String get _emoji => laneFruitEmojis[colorIndex][fruitVariant];
 
   @override
   void update(double dt) {
@@ -62,7 +65,7 @@ class FruitComponent extends PositionComponent with HasGameRef<BlazingGame> {
     // Emoji label
     final tp = TextPainter(
       text: TextSpan(
-        text: fruitEmojis[colorIndex],
+        text: _emoji,
         style: const TextStyle(fontSize: 26),
       ),
       textDirection: TextDirection.ltr,
