@@ -36,8 +36,7 @@ class PauseOverlay extends StatelessWidget {
                 label: 'RESUME',
                 color: const Color(0xFF40C840),
                 onTap: () {
-                  game.overlays.remove(overlayPause);
-                  game.resumeEngine();
+                  game.resumeGame();
                 },
               ),
               const SizedBox(height: 12),

@@ -169,6 +169,13 @@ class BlazingGame extends FlameGame {
     overlays.add(overlayPause);
   }
 
+  void resumeGame() {
+    overlays.remove(overlayPause);
+    isRunning = true;
+    _musicPlayer?.resume();
+    resumeEngine();
+  }
+
   // ── Game Over ─────────────────────────────────────────────────────────────
   Future<void> _handleGameOver() async {
     if (!isRunning) return;
