@@ -35,21 +35,21 @@ class HudComponent extends Component with HasGameRef<BlazingGame> {
 
     // ── HUD background bar ─────────────────────────────────────────────────
     canvas.drawRect(
-      Rect.fromLTWH(0, 0, sw, 60),
+      Rect.fromLTWH(0, 0, sw, 80),
       Paint()..color = const Color(0xDD000000),
     );
 
-    // ── Lives — top left ───────────────────────────────────────────────────
+    // ── Lives — top left ─────────────────────────────────────────────────────
     for (int i = 0; i < startingLives; i++) {
-      _drawHeart(canvas, Offset(12 + i * 30.0, 8), i < _lives);
+      _drawHeart(canvas, Offset(12 + i * 30.0, 40), i < _lives);
     }
 
     // ── Score — top centre ─────────────────────────────────────────────────
     _drawText(
       canvas,
       text: _score.toString().padLeft(6, '0'),
-      offset: Offset(sw / 2, 6),
-      fontSize: 26,
+      offset: Offset(sw / 2, 40),
+      fontSize: 22,
       align: TextAlign.center,
       bold: true,
     );
