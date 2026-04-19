@@ -1,6 +1,6 @@
-# Blazing Fruits v2 🔥
+# Blazing Fruits 🔥
 
-Arcade reflex game built with Flutter + Flame. Tap a lane to fire its laser and burn fruits whose color doesn't match the lane — before they reach the bottom.
+Arcade reflex game built with Flutter + Flame. Tap a lane to fire its flamethrower and burn fruits whose color doesn't match the lane — before they reach the impact zone.
 
 ## Quick Start
 
@@ -20,13 +20,12 @@ flutter test
 
 ## How to Play
 
-- Colored fruits fall down colored lanes
-- **Tap a lane** to fire its laser
-- Burn fruits whose color **does NOT match** the lane
-- Let matching fruits pass through safely
+- Colored fruits fall down **green**, **yellow**, and **red** lanes
+- **Tap a lane** to fire its horizontal flamethrowers (one on each side)
+- Burn fruits whose color **does NOT match** the lane — including **blue blueberries**, which always must be burned regardless of the lane
+- Let matching fruits pass through the impact zone safely
 - 3 lives — don't let wrong-color fruits reach the bottom!
-- Combo multiplier builds with consecutive correct burns (up to 5×)
-- Speed increases every 10 fruits
+- Every successful burn nudges the fruit speed up (up to 420 px/s)
 
 ## Project Structure
 
@@ -39,13 +38,13 @@ lib/
 │   ├── blazing_game.dart       # FlameGame root
 │   ├── components/
 │   │   ├── lane.dart           # Tappable lane
-│   │   ├── fruit.dart          # Falling fruit + particles
-│   │   ├── laser.dart          # Beam + hit detection
-│   │   └── hud.dart            # Score / lives / wave display
+│   │   ├── fruit.dart          # Falling fruit + particles (3 variants per color)
+│   │   ├── flamethrower.dart   # Horizontal flame beam + hit detection
+│   │   └── hud.dart            # Score / lives display
 │   ├── managers/
-│   │   ├── score_manager.dart  # Points + combo + persistence
+│   │   ├── score_manager.dart  # Points + local persistence
 │   │   ├── life_manager.dart   # Lives + game-over stream
-│   │   └── fruit_spawner.dart  # Spawn timing + wave logic
+│   │   └── fruit_spawner.dart  # Spawn timing + per-burn acceleration
 │   └── overlays/
 │       ├── pause_overlay.dart
 │       └── game_over_overlay.dart
@@ -53,6 +52,15 @@ lib/
     ├── home_screen.dart        # Lane picker + play/leaderboard
     └── leaderboard_screen.dart # Top 10 local scores
 ```
+
+## Fruit Colors & Lane Matching
+
+| Color | Lane | Fruits | Rule |
+|-------|------|--------|------|
+| 🟢 Green | Lane 0 | 🍏 🍐 🥝 | Burn if in any other lane |
+| 🟡 Yellow | Lane 1 | 🍋 🍌 🌽 | Burn if in any other lane |
+| 🔴 Red | Lane 2 | 🍎 🍓 🍒 | Burn if in any other lane |
+| 🔵 Blue | — | 🫐 🫐 🫐 | **Always burn** (no matching lane) |
 
 ## Adding Audio
 
@@ -77,16 +85,15 @@ Audio degrades gracefully — empty placeholder files are safe.
 
 All difficulty values are in `lib/constants.dart`. No magic numbers anywhere else.
 
-Key values to tweak:
-
-| Constant | Default | Effect |
-|---|---|---|
-| `fruitSpeedInitial` | 180 px/s | Starting speed |
+| Constant | Value | Effect |
+|----------|-------|--------|
+| `fruitSpeedInitial` | 185 px/s | Starting fall speed |
 | `fruitSpeedMax` | 420 px/s | Speed ceiling |
+| `fruitSpeedPerBurn` | 2.5 px/s | Speed bump per successful burn |
 | `spawnIntervalInitial` | 1.6 s | Starting spawn rate |
 | `spawnIntervalMin` | 0.45 s | Fastest spawn rate |
-| `fruitsPerWave` | 10 | Fruits before difficulty step-up |
-| `laserZoneFraction` | 0.15 | Bottom % of screen = laser zone |
+| `flamethrowerYFraction` | 0.85 | Impact zone Y position (fraction from top) |
+| `flamethrowerImpactHalfHeight` | 55 px | Impact zone vertical reach |
 
 ## Building for Release
 
@@ -98,3 +105,4 @@ flutter build apk --release
 # Android App Bundle (for Play Store)
 flutter build appbundle --release
 ```
+
