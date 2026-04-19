@@ -38,10 +38,12 @@ const String prefKeyScores = 'high_scores';
 
 // ── Colors ────────────────────────────────────────────────────────────────────
 // Index alignment is a contract: laneColors[i] == fruitColor for lane i
+// Index 3 (blue) has no matching lane — blue fruits must always be burned.
 const List<Color> laneColors = [
   Color(0xFF00E84B), // bright green  → lane 0
   Color(0xFFFFE000), // bright yellow → lane 1
   Color(0xFFFF2222), // bright red    → lane 2
+  Color(0xFF3399FF), // bright blue   → no lane (always burn)
 ];
 
 const Color bgColor = Color(0xFF0D0D0D);
@@ -49,13 +51,14 @@ const Color hudTextColor = Color(0xFFFFFFFF);
 const Color dividerColor = Color(0x44FFFFFF);
 
 // Lane background opacity (applied to laneColors[i])
-const double laneBgOpacity = 0.20;
+const double laneBgOpacity = 0.55;
 
 // ── Fruit emoji labels per lane (3 variants each, [laneIndex][variant]) ────────
 const List<List<String>> laneFruitEmojis = [
   ['🍏', '🍐', '🥝'], // green lane
   ['🍋', '🍌', '🌽'], // yellow lane
   ['🍎', '🍓', '🍒'], // red lane
+  ['🫐', '🫐', '🫐'], // blue — blueberry, always burn
 ];
 
 // ── Particle burst ────────────────────────────────────────────────────────────
